@@ -89,6 +89,31 @@ def show_graph(start_date,end_date):
         line=dict(color='red', width=2),
         name='30-Day PR Moving Avg'
     ))
+    # Add GHI legend entries (dummy traces for legend)
+    fig.add_trace(go.Scatter(
+        x=[None], y=[None],
+        mode='markers',
+        marker=dict(size=10, color='navy'),
+        name='GHI < 2'
+    ))
+    fig.add_trace(go.Scatter(
+        x=[None], y=[None],
+        mode='markers',
+        marker=dict(size=10, color='lightblue'),
+        name='GHI 2–4'
+    ))
+    fig.add_trace(go.Scatter(
+        x=[None], y=[None],
+        mode='markers',
+        marker=dict(size=10, color='orange'),
+        name='GHI 4–6'
+    ))
+    fig.add_trace(go.Scatter(
+        x=[None], y=[None],
+        mode='markers',
+        marker=dict(size=10, color='brown'),
+        name='GHI > 6'
+    ))
 
     # Budget PR (Green Line)
     fig.add_trace(go.Scatter(
@@ -141,3 +166,36 @@ def show_graph(start_date,end_date):
 
 if st.button("Generate PR Graph"): # Displays Graph on button Click
     show_graph(start_date, end_date)
+st.write("------")
+st.subheader("Author")
+st.write("This project is made by **Tanuj Jain** for assignment submission for **PV Doctor Private Limited**.")
+st.write("------")
+st.subheader("Description")
+st.write('''This project processes and visualizes Performance Ratio (PR) and Global Horizontal Irradiance (GHI) data for a Photovoltaic (PV) plant.
+It includes the following features:
+
+**✅ Data Processing:**
+- Combines multiple CSV files containing daily PR and GHI data into a single dataset.
+- Calculates the 30-day moving average of PR.
+- Dynamically computes the annual Budget PR decay based on a 0.8% yearly reduction starting from July 2019.
+
+**✅ Interactive Visualization:**
+- Generates an interactive scatter plot using Plotly, with PR values as points and GHI values represented by color.
+- Highlights the 30-day moving average and Budget PR decay line.
+         
+Color codes the PR points based on GHI ranges:
+- **Navy Blue:** GHI < 2
+- **Light Blue:** GHI 2–4
+- **Orange:** GHI 4–6
+- **Brown:** GHI > 6
+
+**✅ Dynamic Features:**
+- Displays the total number of days where the PR exceeded the Budget PR.
+- Allows users to filter data by custom date ranges.
+- Shows average PR values for the last 7, 30, and 60 days.
+
+**✅ Interactive Web App:**
+- Built with Streamlit and Plotly, the app provides an interactive dashboard that is user-friendly and responsive.
+
+''')
+st.write("-------")
